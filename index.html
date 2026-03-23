@@ -1,0 +1,1004 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sathya K — Data Analyst</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #0d0f14;
+      --bg2: #131720;
+      --card: #181d27;
+      --border: rgba(196,160,90,0.18);
+      --gold: #c4a05a;
+      --gold-light: #e8c97e;
+      --text: #e8e4dc;
+      --muted: #8a8a8a;
+      --accent: #2a3a5c;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.25rem 5%;
+      background: rgba(13,15,20,0.85);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem; font-weight: 600;
+      color: var(--gold);
+      letter-spacing: 0.05em;
+    }
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-links a {
+      text-decoration: none; color: var(--muted);
+      font-size: 0.82rem; font-weight: 500; letter-spacing: 0.1em;
+      text-transform: uppercase; transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--gold); }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex; align-items: center; justify-content: center;
+      position: relative; overflow: hidden;
+      padding: 0 5%;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 70% 60% at 15% 50%, rgba(42,58,92,0.4) 0%, transparent 65%),
+        radial-gradient(ellipse 40% 40% at 85% 20%, rgba(196,160,90,0.07) 0%, transparent 55%);
+    }
+    .hero-grid {
+      position: absolute; inset: 0; opacity: 0.03;
+      background-image: linear-gradient(var(--gold) 1px, transparent 1px),
+                        linear-gradient(90deg, var(--gold) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+    .hero-content {
+      position: relative; z-index: 2;
+      max-width: 760px;
+      animation: fadeUp 1s ease both;
+    }
+    .hero-tag {
+      display: inline-block;
+      font-size: 0.75rem; font-weight: 500;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--gold); border: 1px solid var(--border);
+      padding: 0.35rem 1rem; border-radius: 2rem;
+      margin-bottom: 1.8rem;
+      animation: fadeUp 1s 0.1s ease both;
+    }
+    h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3.2rem, 7vw, 5.5rem);
+      font-weight: 300; line-height: 1.1;
+      color: var(--text);
+      animation: fadeUp 1s 0.2s ease both;
+    }
+    h1 em { font-style: italic; color: var(--gold); }
+    .hero-sub {
+      font-size: 1.05rem; color: var(--muted); max-width: 520px;
+      margin: 1.6rem 0 2.4rem;
+      animation: fadeUp 1s 0.35s ease both;
+    }
+    .hero-cta {
+      display: flex; gap: 1rem; flex-wrap: wrap;
+      animation: fadeUp 1s 0.5s ease both;
+    }
+    .btn {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.75rem 1.8rem; border-radius: 4px;
+      font-size: 0.85rem; font-weight: 500; letter-spacing: 0.06em;
+      text-decoration: none; transition: all 0.25s; cursor: pointer; border: none;
+    }
+    .btn-gold {
+      background: var(--gold); color: var(--bg);
+    }
+    .btn-gold:hover { background: var(--gold-light); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(196,160,90,0.3); }
+    .btn-outline {
+      background: transparent; color: var(--text);
+      border: 1px solid var(--border);
+    }
+    .btn-outline:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-2px); }
+
+    .hero-stats {
+      display: flex; gap: 3rem; margin-top: 4rem;
+      animation: fadeUp 1s 0.6s ease both;
+    }
+    .stat-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.4rem; font-weight: 600; color: var(--gold); line-height: 1;
+    }
+    .stat-label {
+      font-size: 0.78rem; color: var(--muted); letter-spacing: 0.08em;
+      text-transform: uppercase; margin-top: 0.3rem;
+    }
+
+    /* SECTION COMMONS */
+    section { padding: 7rem 5%; }
+    .section-label {
+      font-size: 0.72rem; font-weight: 500; letter-spacing: 0.22em;
+      text-transform: uppercase; color: var(--gold);
+      display: flex; align-items: center; gap: 0.75rem;
+      margin-bottom: 1rem;
+    }
+    .section-label::before {
+      content: ''; width: 32px; height: 1px; background: var(--gold);
+    }
+    h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 4vw, 2.9rem);
+      font-weight: 300; line-height: 1.2;
+      color: var(--text); margin-bottom: 1.2rem;
+    }
+    .divider {
+      width: 48px; height: 2px;
+      background: linear-gradient(90deg, var(--gold), transparent);
+      margin-bottom: 2rem;
+    }
+
+    /* ABOUT */
+    #about { background: var(--bg2); }
+    .about-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 5rem; align-items: center; max-width: 1100px; margin: 0 auto;
+    }
+    .about-text p {
+      color: var(--muted); font-size: 0.97rem;
+      margin-bottom: 1.2rem;
+    }
+    .about-text p strong { color: var(--text); }
+    .about-highlights {
+      display: flex; flex-direction: column; gap: 1rem;
+      margin-top: 2rem;
+    }
+    .highlight-item {
+      display: flex; align-items: flex-start; gap: 1rem;
+      padding: 1rem 1.2rem;
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 6px;
+    }
+    .hi-icon { font-size: 1.2rem; flex-shrink: 0; }
+    .hi-text { font-size: 0.88rem; color: var(--muted); }
+    .hi-text strong { color: var(--text); display: block; margin-bottom: 0.15rem; }
+    .about-right { display: flex; flex-direction: column; gap: 1.2rem; }
+    .info-row {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 0.85rem 0; border-bottom: 1px solid var(--border);
+    }
+    .info-label { font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+    .info-val { font-size: 0.9rem; color: var(--text); }
+    .info-val a { color: var(--gold); text-decoration: none; }
+    .info-val a:hover { text-decoration: underline; }
+
+    /* SKILLS */
+    #skills { background: var(--bg); }
+    .skills-container { max-width: 1100px; margin: 0 auto; }
+    .skills-groups {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem; margin-top: 3rem;
+    }
+    .skill-group {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 8px; padding: 1.6rem;
+      transition: border-color 0.25s;
+    }
+    .skill-group:hover { border-color: var(--gold); }
+    .sg-title {
+      font-size: 0.75rem; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 1.2rem;
+      display: flex; align-items: center; gap: 0.6rem;
+    }
+    .sg-title::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+    .skill-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .tag {
+      background: rgba(196,160,90,0.08); border: 1px solid rgba(196,160,90,0.22);
+      color: var(--text); font-size: 0.8rem;
+      padding: 0.3rem 0.75rem; border-radius: 3px;
+      transition: all 0.2s;
+    }
+    .tag:hover { background: rgba(196,160,90,0.2); color: var(--gold); }
+
+    /* SKILL BARS */
+    .skill-bars { margin-top: 2rem; display: flex; flex-direction: column; gap: 1rem; }
+    .sbar { }
+    .sbar-top { display: flex; justify-content: space-between; margin-bottom: 0.4rem; }
+    .sbar-name { font-size: 0.85rem; color: var(--text); }
+    .sbar-pct { font-size: 0.78rem; color: var(--gold); }
+    .sbar-track {
+      height: 4px; background: rgba(255,255,255,0.06); border-radius: 2px; overflow: hidden;
+    }
+    .sbar-fill {
+      height: 100%; background: linear-gradient(90deg, var(--gold), var(--gold-light));
+      border-radius: 2px;
+      animation: barGrow 1.2s ease both;
+      transform-origin: left;
+    }
+
+    /* PROJECTS */
+    #projects { background: var(--bg2); }
+    .projects-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.5rem; max-width: 1100px; margin: 3rem auto 0;
+    }
+    .project-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 8px; overflow: hidden;
+      transition: transform 0.25s, border-color 0.25s;
+      position: relative;
+    }
+    .project-card:hover { transform: translateY(-4px); border-color: var(--gold); }
+    .pc-top {
+      padding: 1.8rem 1.8rem 1.2rem;
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: flex-start; justify-content: space-between;
+    }
+    .pc-icon {
+      width: 44px; height: 44px; border-radius: 8px;
+      background: rgba(196,160,90,0.1); border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.3rem; flex-shrink: 0;
+    }
+    .pc-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.2rem; font-weight: 300; color: rgba(196,160,90,0.12);
+      line-height: 1;
+    }
+    .pc-body { padding: 1.4rem 1.8rem 1.8rem; }
+    .pc-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem; font-weight: 600; color: var(--text);
+      margin-bottom: 0.6rem; line-height: 1.3;
+    }
+    .pc-desc { font-size: 0.88rem; color: var(--muted); line-height: 1.65; }
+    .pc-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 1.2rem; }
+    .pc-tag {
+      font-size: 0.72rem; letter-spacing: 0.06em;
+      background: rgba(196,160,90,0.07);
+      border: 1px solid rgba(196,160,90,0.2);
+      color: var(--gold); padding: 0.2rem 0.65rem; border-radius: 2px;
+    }
+    .pc-footer {
+      padding: 1rem 1.8rem;
+      border-top: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .pc-link {
+      font-size: 0.78rem; color: var(--gold); text-decoration: none;
+      letter-spacing: 0.06em; display: flex; align-items: center; gap: 0.4rem;
+      transition: gap 0.2s;
+    }
+    .pc-link:hover { gap: 0.7rem; }
+
+    /* CERTIFICATIONS */
+    #certifications { background: var(--bg); }
+    .cert-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.2rem; max-width: 1100px; margin: 3rem auto 0;
+    }
+    .cert-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 8px; padding: 1.5rem 1.6rem;
+      display: flex; align-items: flex-start; gap: 1rem;
+      transition: border-color 0.25s;
+    }
+    .cert-card:hover { border-color: var(--gold); }
+    .cert-badge {
+      width: 42px; height: 42px; border-radius: 8px; flex-shrink: 0;
+      background: linear-gradient(135deg, rgba(196,160,90,0.15), rgba(42,58,92,0.4));
+      border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem;
+    }
+    .cert-info { flex: 1; }
+    .cert-name { font-size: 0.93rem; font-weight: 500; color: var(--text); margin-bottom: 0.25rem; }
+    .cert-issuer { font-size: 0.78rem; color: var(--gold); letter-spacing: 0.04em; }
+    .cert-year { font-size: 0.75rem; color: var(--muted); margin-top: 0.2rem; }
+
+    /* CONTACT */
+    #contact { background: var(--bg2); }
+    .contact-wrapper {
+      max-width: 800px; margin: 0 auto; text-align: center;
+    }
+    .contact-wrapper h2 { font-size: clamp(2rem, 5vw, 3.5rem); }
+    .contact-sub { color: var(--muted); margin: 1rem 0 3rem; font-size: 1rem; }
+    .contact-cards {
+      display: flex; justify-content: center; flex-wrap: wrap; gap: 1rem; margin-bottom: 3rem;
+    }
+    .contact-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 8px; padding: 1.3rem 1.8rem;
+      display: flex; align-items: center; gap: 0.9rem;
+      text-decoration: none; color: var(--text);
+      transition: all 0.25s; min-width: 200px;
+    }
+    .contact-card:hover { border-color: var(--gold); transform: translateY(-3px); }
+    .cc-icon { font-size: 1.3rem; }
+    .cc-label { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); }
+    .cc-val { font-size: 0.88rem; color: var(--gold); margin-top: 0.15rem; }
+
+    /* FOOTER */
+    footer {
+      background: var(--bg); border-top: 1px solid var(--border);
+      padding: 2rem 5%; text-align: center;
+      font-size: 0.8rem; color: var(--muted);
+    }
+    footer span { color: var(--gold); }
+
+    /* ANIMATIONS */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(28px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes barGrow {
+      from { transform: scaleX(0); }
+      to { transform: scaleX(1); }
+    }
+
+    /* SCROLL REVEAL */
+    .reveal { opacity: 1; transform: none; transition: opacity 0.7s, transform 0.7s; }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .hero-stats { gap: 1.5rem; }
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">SK.</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#resume">Resume</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#learning">Learning</a></li>
+    <li><a href="#certifications">Certifications</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="mailto:sathyakp0507@gmail.com" class="btn btn-gold" style="font-size:0.78rem;padding:0.55rem 1.2rem;">Hire Me</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="hero-tag">📊 Data Analyst · Chennai, India</div>
+    <h1>Turning Data Into<br /><em>Meaningful Insights</em></h1>
+    <p class="hero-sub">Hi, I'm Sathya K — a Data Analyst with a B.Sc in Computer Science, passionate about transforming raw data into actionable decisions through Python, SQL, and Power BI.</p>
+    <div class="hero-cta">
+      <a href="#projects" class="btn btn-gold">View Projects →</a>
+      <a href="https://github.com/sathyak29" target="_blank" class="btn btn-outline">GitHub Profile</a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <div class="stat-num">20+</div>
+        <div class="stat-label">Repositories</div>
+      </div>
+      <div>
+        <div class="stat-num">4</div>
+        <div class="stat-label">Projects</div>
+      </div>
+      <div>
+        <div class="stat-num">2</div>
+        <div class="stat-label">Internships</div>
+      </div>
+      <div>
+        <div class="stat-num">9</div>
+        <div class="stat-label">Certificates</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-grid">
+    <div class="about-text reveal">
+      <div class="section-label">About Me</div>
+      <h2>A Data-Driven<br />Problem Solver</h2>
+      <div class="divider"></div>
+      <p>I'm a <strong>Data Analyst</strong> with a strong foundation in Computer Science (B.Sc), specializing in SQL, Python, and business intelligence tools like Power BI.</p>
+      <p>Currently honing my analytical skills by practicing <strong>SQL queries, NumPy problems</strong>, and refining analytics workflows in preparation for technical interviews.</p>
+      <p>I'm passionate about making analytics concepts <strong>accessible in both English and Tamil</strong>, and I believe data storytelling is as powerful as the numbers themselves.</p>
+
+      <div class="about-highlights">
+        <div class="highlight-item">
+          <div class="hi-icon">🎯</div>
+          <div class="hi-text"><strong>Interview-Ready</strong>Actively practicing SQL & Python analytics problems for technical roles.</div>
+        </div>
+        <div class="highlight-item">
+          <div class="hi-icon">📊</div>
+          <div class="hi-text"><strong>Dashboard Creator</strong>Building interactive Power BI dashboards with MySQL connectors.</div>
+        </div>
+        <div class="highlight-item">
+          <div class="hi-icon">🌍</div>
+          <div class="hi-text"><strong>Bilingual Communicator</strong>Sharing analytics insights in English and Tamil communities.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="about-right reveal" style="transition-delay:0.2s">
+      <div class="info-row">
+        <span class="info-label">Name</span>
+        <span class="info-val">Sathya K</span>
+      </div>
+      <div class="info-row">
+        <span class="info-label">Role</span>
+        <span class="info-val">Data Analyst</span>
+      </div>
+      <div class="info-row">
+        <span class="info-label">Education</span>
+        <span class="info-val">B.Sc Computer Science</span>
+      </div>
+      <div class="info-row">
+        <span class="info-label">Location</span>
+        <span class="info-val">Chennai, India</span>
+      </div>
+      <div class="info-row">
+        <span class="info-label">Email</span>
+        <span class="info-val"><a href="mailto:sathyakp0507@gmail.com">sathyakp0507@gmail.com</a></span>
+      </div>
+      <div class="info-row">
+        <span class="info-label">GitHub</span>
+        <span class="info-val"><a href="https://github.com/sathyak29" target="_blank">@sathyak29</a></span>
+      </div>
+      <div class="info-row">
+        <span class="info-label">LinkedIn</span>
+        <span class="info-val"><a href="https://linkedin.com/in/sathyak29" target="_blank">linkedin.com/in/sathyak29</a></span>
+      </div>
+      <div class="info-row" style="border:none">
+        <span class="info-label">Status</span>
+        <span class="info-val" style="color:#4caf82;display:flex;align-items:center;gap:0.4rem;"><span style="width:7px;height:7px;border-radius:50%;background:#4caf82;display:inline-block;"></span> Open to Opportunities</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RESUME -->
+<section id="resume" style="background:var(--bg);">
+  <div class="reveal" style="max-width:900px;margin:0 auto;">
+    <div class="section-label">My Resume</div>
+    <h2>Curriculum Vitae</h2>
+    <div class="divider"></div>
+    <p style="color:var(--muted);font-size:0.95rem;margin-bottom:2.5rem;">A snapshot of my education, experience, skills and projects.</p>
+
+    <!-- Resume Card -->
+    <div style="background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden;">
+
+      <!-- Resume Header -->
+      <div style="background:linear-gradient(135deg,rgba(42,58,92,0.6),rgba(196,160,90,0.12));padding:2.5rem;text-align:center;border-bottom:1px solid var(--border);">
+        <h3 style="font-family:'Cormorant Garamond',serif;font-size:2.2rem;font-weight:600;color:var(--text);margin-bottom:0.5rem;">SATHYA K</h3>
+        <p style="color:var(--gold);font-size:0.85rem;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:1rem;">Data Analyst</p>
+        <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:1.2rem;font-size:0.82rem;color:var(--muted);">
+          <span>📞 8668148015</span>
+          <span>✉️ sathyakp0507@gmail.com</span>
+          <span>💼 linkedin.com/in/sathyak29</span>
+          <span>🐙 github.com/sathyak29</span>
+        </div>
+      </div>
+
+      <!-- Resume Body -->
+      <div style="padding:2rem 2.5rem;">
+
+        <!-- Professional Summary -->
+        <div style="margin-bottom:2rem;">
+          <div style="font-size:0.72rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:0.8rem;display:flex;align-items:center;gap:0.6rem;">Professional Summary<span style="flex:1;height:1px;background:var(--border);"></span></div>
+          <p style="color:var(--muted);font-size:0.88rem;line-height:1.75;">Aspiring Data Analyst with hands-on experience in <strong style="color:var(--text);">SQL, Python, Power BI and Excel</strong>. Skilled in data cleaning, exploratory data analysis (EDA), KPI reporting, and dashboard development. Analyzed <strong style="color:var(--gold);">10,000+ records</strong> across real-world analytics projects to generate actionable insights through data visualization and reporting.</p>
+        </div>
+
+        <!-- Technical Skills -->
+        <div style="margin-bottom:2rem;">
+          <div style="font-size:0.72rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:0.8rem;display:flex;align-items:center;gap:0.6rem;">Technical Skills<span style="flex:1;height:1px;background:var(--border);"></span></div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.5rem;">
+            <div style="font-size:0.83rem;color:var(--muted);padding:0.4rem 0;border-bottom:1px solid rgba(196,160,90,0.08);">🗄️ <strong style="color:var(--text);">SQL/MySQL</strong> — Joins, Subqueries, Window Functions</div>
+            <div style="font-size:0.83rem;color:var(--muted);padding:0.4rem 0;border-bottom:1px solid rgba(196,160,90,0.08);">🐍 <strong style="color:var(--text);">Python</strong> — Pandas, NumPy, Matplotlib, Seaborn</div>
+            <div style="font-size:0.83rem;color:var(--muted);padding:0.4rem 0;border-bottom:1px solid rgba(196,160,90,0.08);">📊 <strong style="color:var(--text);">Power BI</strong> — DAX, PowerQuery, Dashboard Development</div>
+            <div style="font-size:0.83rem;color:var(--muted);padding:0.4rem 0;border-bottom:1px solid rgba(196,160,90,0.08);">📗 <strong style="color:var(--text);">Excel</strong> — PivotTables, VLOOKUP, Advanced Formulas</div>
+            <div style="font-size:0.83rem;color:var(--muted);padding:0.4rem 0;border-bottom:1px solid rgba(196,160,90,0.08);">🔍 <strong style="color:var(--text);">Data Analysis</strong> — Cleaning, Transformation, EDA</div>
+            <div style="font-size:0.83rem;color:var(--muted);padding:0.4rem 0;border-bottom:1px solid rgba(196,160,90,0.08);">📈 <strong style="color:var(--text);">Visualization</strong> — KPI Reporting, Business Insights</div>
+          </div>
+        </div>
+
+        <!-- Internship -->
+        <div style="margin-bottom:2rem;">
+          <div style="font-size:0.72rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:0.8rem;display:flex;align-items:center;gap:0.6rem;">Internship<span style="flex:1;height:1px;background:var(--border);"></span></div>
+          <div style="background:rgba(196,160,90,0.05);border:1px solid rgba(196,160,90,0.2);border-radius:8px;padding:1.2rem 1.4rem;">
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:0.5rem;margin-bottom:0.6rem;">
+              <strong style="color:var(--text);font-size:0.92rem;">Microsoft Elevate Internship Program | Power BI | AICTE</strong>
+              <span style="font-size:0.75rem;color:var(--gold);background:rgba(196,160,90,0.1);padding:0.2rem 0.7rem;border-radius:2rem;border:1px solid rgba(196,160,90,0.3);">February 2026</span>
+            </div>
+            <ul style="color:var(--muted);font-size:0.83rem;line-height:1.8;padding-left:1.2rem;">
+              <li>Completed a 4-week virtual internship on Emerging Technologies under Microsoft Elevate - AICTE</li>
+              <li>Trained on <strong style="color:var(--text);">Power BI, Dashboard Development</strong> and Data Visualization through MS Learn</li>
+              <li>Worked on a real-world project with mentor guidance and submitted a project presentation</li>
+              <li>Earned a co-branded certificate with AICTE logo upon successful completion</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Projects -->
+        <div style="margin-bottom:2rem;">
+          <div style="font-size:0.72rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:0.8rem;display:flex;align-items:center;gap:0.6rem;">Key Projects<span style="flex:1;height:1px;background:var(--border);"></span></div>
+          <div style="display:flex;flex-direction:column;gap:1rem;">
+            <div style="border-left:2px solid var(--gold);padding-left:1rem;">
+              <div style="font-size:0.88rem;font-weight:600;color:var(--text);margin-bottom:0.4rem;">Car Market Analysis | Power BI</div>
+              <ul style="color:var(--muted);font-size:0.81rem;line-height:1.75;padding-left:1rem;">
+                <li>Built a 3-page interactive dashboard covering 10,000+ car records across 32 brands &amp; 120 models</li>
+                <li>Created DAX measures: Avg Selling Price, Avg Price/KM, Avg Mileage, Avg Power, Car Count</li>
+                <li>Identified Top 3 most/least expensive cars, mileage vs power trends, and seller distribution</li>
+              </ul>
+            </div>
+            <div style="border-left:2px solid rgba(196,160,90,0.5);padding-left:1rem;">
+              <div style="font-size:0.88rem;font-weight:600;color:var(--text);margin-bottom:0.4rem;">Electronics Sales Analysis | Python (Pandas, Matplotlib, Seaborn)</div>
+              <ul style="color:var(--muted);font-size:0.81rem;line-height:1.75;padding-left:1rem;">
+                <li>Analyzed 10,000+ sales records across 5 product categories with full data cleaning pipeline</li>
+                <li>Computed KPIs: Total Revenue, Avg Order Value, Best-Selling &amp; Top Revenue Product</li>
+                <li>Visualized Monthly Sales Trends, Loyalty vs Non-Loyalty AOV, and Age Distribution of Buyers</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Certifications -->
+        <div style="margin-bottom:2rem;">
+          <div style="font-size:0.72rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:0.8rem;display:flex;align-items:center;gap:0.6rem;">Certifications &amp; Training<span style="flex:1;height:1px;background:var(--border);"></span></div>
+          <div style="background:rgba(196,160,90,0.05);border:1px solid rgba(196,160,90,0.15);border-radius:8px;padding:1.2rem 1.4rem;">
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:0.4rem;margin-bottom:0.5rem;">
+              <strong style="color:var(--text);font-size:0.9rem;">Besant Technologies — Data Analytics Training Program (Onsite)</strong>
+              <span style="font-size:0.75rem;color:var(--muted);">Sep 2025 – Feb 2026</span>
+            </div>
+            <p style="color:var(--muted);font-size:0.82rem;line-height:1.7;">Comprehensive training covering SQL, Excel, Python, and Power BI for data cleaning, analysis, visualization, and real-world project implementation.</p>
+          </div>
+        </div>
+
+        <!-- Education -->
+        <div>
+          <div style="font-size:0.72rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:0.8rem;display:flex;align-items:center;gap:0.6rem;">Education<span style="flex:1;height:1px;background:var(--border);"></span></div>
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:0.5rem;">
+            <div>
+              <div style="font-size:0.92rem;font-weight:600;color:var(--text);">Bachelor of Science in Computer Science</div>
+              <div style="font-size:0.83rem;color:var(--muted);margin-top:0.2rem;">S.K. Velayutham Women's Arts &amp; Science College, Tamil Nadu</div>
+            </div>
+            <div style="text-align:right;">
+              <div style="font-size:0.82rem;color:var(--gold);">2021 – 2024</div>
+              <div style="font-size:0.88rem;color:var(--text);margin-top:0.2rem;font-weight:500;">CGPA: 8.97 / 10</div>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- end resume body -->
+
+      <!-- Download Button -->
+      <div style="padding:1.5rem 2.5rem;border-top:1px solid var(--border);background:rgba(196,160,90,0.03);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;">
+        <p style="color:var(--muted);font-size:0.82rem;">📄 Want the full resume? Download the PDF version.</p>
+        <a href="SATHYA_K_DATA_ANALYST_pdf.pdf" download="Sathya_K_Resume.pdf" class="btn btn-gold" style="font-size:0.85rem;">
+          ⬇️ Download Resume PDF
+        </a>
+      </div>
+
+    </div><!-- end resume card -->
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="skills-container">
+    <div class="reveal">
+      <div class="section-label">Tech Stack</div>
+      <h2>Skills &amp; Technologies</h2>
+      <div class="divider"></div>
+    </div>
+
+    <div class="skills-groups">
+      <div class="skill-group reveal">
+        <div class="sg-title">Languages</div>
+        <div class="skill-tags">
+          <span class="tag">Python</span>
+          <span class="tag">SQL</span>
+        </div>
+        <div class="skill-bars" style="margin-top:1.4rem;">
+          <div class="sbar">
+            <div class="sbar-top"><span class="sbar-name">Python</span><span class="sbar-pct">85%</span></div>
+            <div class="sbar-track"><div class="sbar-fill" style="width:85%"></div></div>
+          </div>
+          <div class="sbar">
+            <div class="sbar-top"><span class="sbar-name">SQL / MySQL</span><span class="sbar-pct">88%</span></div>
+            <div class="sbar-track"><div class="sbar-fill" style="width:88%"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="skill-group reveal" style="transition-delay:0.1s">
+        <div class="sg-title">Libraries</div>
+        <div class="skill-tags">
+          <span class="tag">Pandas</span>
+          <span class="tag">NumPy</span>
+          <span class="tag">Matplotlib</span>
+        </div>
+        <div class="skill-bars" style="margin-top:1.4rem;">
+          <div class="sbar">
+            <div class="sbar-top"><span class="sbar-name">Pandas</span><span class="sbar-pct">82%</span></div>
+            <div class="sbar-track"><div class="sbar-fill" style="width:82%"></div></div>
+          </div>
+          <div class="sbar">
+            <div class="sbar-top"><span class="sbar-name">NumPy</span><span class="sbar-pct">80%</span></div>
+            <div class="sbar-track"><div class="sbar-fill" style="width:80%"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="skill-group reveal" style="transition-delay:0.2s">
+        <div class="sg-title">BI & Databases</div>
+        <div class="skill-tags">
+          <span class="tag">Power BI</span>
+          <span class="tag">MySQL</span>
+          <span class="tag">SQLite</span>
+        </div>
+        <div class="skill-bars" style="margin-top:1.4rem;">
+          <div class="sbar">
+            <div class="sbar-top"><span class="sbar-name">Power BI</span><span class="sbar-pct">80%</span></div>
+            <div class="sbar-track"><div class="sbar-fill" style="width:80%"></div></div>
+          </div>
+          <div class="sbar">
+            <div class="sbar-top"><span class="sbar-name">MySQL</span><span class="sbar-pct">85%</span></div>
+            <div class="sbar-track"><div class="sbar-fill" style="width:85%"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="skill-group reveal" style="transition-delay:0.3s">
+        <div class="sg-title">Other Tools</div>
+        <div class="skill-tags">
+          <span class="tag">AWS</span>
+          <span class="tag">Git</span>
+          <span class="tag">GitHub</span>
+          <span class="tag">Django</span>
+          <span class="tag">Flask</span>
+          <span class="tag">MS Excel</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="reveal">
+    <div class="section-label">My Work</div>
+    <h2>Featured Projects</h2>
+    <div class="divider"></div>
+  </div>
+
+  <div class="projects-grid">
+
+    <div class="project-card reveal">
+      <div class="pc-top">
+        <div class="pc-icon">🚗</div>
+        <div class="pc-num">01</div>
+      </div>
+      <div class="pc-body">
+        <div class="pc-title">Car Market Analysis</div>
+        <p class="pc-desc">End-to-end data analytics project on the car market — from raw dataset exploration to SQL-based querying, Python analysis, and an interactive Power BI dashboard revealing pricing trends, brand comparisons, and market insights.</p>
+        <div class="pc-tags">
+          <span class="pc-tag">Power BI</span>
+          <span class="pc-tag">SQL</span>
+          <span class="pc-tag">Python</span>
+          <span class="pc-tag">Data Cleaning</span>
+          <span class="pc-tag">EDA</span>
+          <span class="pc-tag">Dashboard</span>
+        </div>
+      </div>
+      <div class="pc-footer">
+        <a href="https://github.com/sathyak29/DATA_ANALYST_PROJECT-1--Car_Market_Analysis" target="_blank" class="pc-link">View on GitHub →</a>
+        <span style="font-size:0.72rem;color:var(--muted);">Dataset · SQL · Power BI · Outputs</span>
+      </div>
+    </div>
+
+    <div class="project-card reveal" style="transition-delay:0.1s">
+      <div class="pc-top">
+        <div class="pc-icon">💻</div>
+        <div class="pc-num">02</div>
+      </div>
+      <div class="pc-body">
+        <div class="pc-title">Electronics Sales Analysis</div>
+        <p class="pc-desc">A Python-based Exploratory Data Analysis on electronics sales data using Jupyter Notebook. Covers data cleaning, trend analysis, category-wise performance, and visual insights from real CSV sales data.</p>
+        <div class="pc-tags">
+          <span class="pc-tag">Python</span>
+          <span class="pc-tag">Jupyter Notebook</span>
+          <span class="pc-tag">Pandas</span>
+          <span class="pc-tag">Matplotlib</span>
+          <span class="pc-tag">EDA</span>
+          <span class="pc-tag">CSV</span>
+        </div>
+      </div>
+      <div class="pc-footer">
+        <a href="https://github.com/sathyak29/DATA_ANALYST_PROJECT-2--Electronics_Sales_Analysis" target="_blank" class="pc-link">View on GitHub →</a>
+        <span style="font-size:0.72rem;color:var(--muted);">Jupyter Notebook · CSV Dataset</span>
+      </div>
+    </div>
+
+    <div class="project-card reveal" style="transition-delay:0.2s; border-color: rgba(196,160,90,0.45); position:relative; overflow:hidden;">
+      <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--gold),var(--gold-light),var(--gold));"></div>
+      <div class="pc-top">
+        <div style="display:flex;align-items:center;gap:0.6rem;">
+          <div class="pc-icon">🏢</div>
+          <span style="font-size:0.7rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold);background:rgba(196,160,90,0.1);border:1px solid rgba(196,160,90,0.3);padding:0.2rem 0.6rem;border-radius:2rem;">Microsoft Internship</span>
+        </div>
+        <div class="pc-num">03</div>
+      </div>
+      <div class="pc-body">
+        <div class="pc-title">Electronics Sales Analysis — Microsoft</div>
+        <p class="pc-desc">Built during a 4-week internship at Microsoft. Developed two interactive Power BI dashboards — a Customer & Loyalty Analysis and a Sales Overview — uncovering revenue trends, loyalty program gaps, and top-performing products like smartphones and smartwatches.</p>
+        <div class="pc-tags">
+          <span class="pc-tag">Power BI</span>
+          <span class="pc-tag">DAX</span>
+          <span class="pc-tag">CSV</span>
+          <span class="pc-tag">Dashboard</span>
+          <span class="pc-tag">Customer Analytics</span>
+          <span class="pc-tag">KPI</span>
+        </div>
+      </div>
+      <div class="pc-footer">
+        <a href="https://github.com/sathyak29/MICROSOFT_INTERNSHIP--Electronics_Sales_Analysis" target="_blank" class="pc-link">View on GitHub →</a>
+        <span style="font-size:0.72rem;color:var(--gold);">⭐ Featured</span>
+      </div>
+    </div>
+
+    <div class="project-card reveal" style="transition-delay:0.3s; border-color: rgba(196,160,90,0.45); position:relative; overflow:hidden;">
+      <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--gold),var(--gold-light),var(--gold));"></div>
+      <div class="pc-top">
+        <div style="display:flex;align-items:center;gap:0.6rem;">
+          <div class="pc-icon">🛒</div>
+          <span style="font-size:0.7rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold);background:rgba(196,160,90,0.1);border:1px solid rgba(196,160,90,0.3);padding:0.2rem 0.6rem;border-radius:2rem;">ApexPlanet Internship</span>
+        </div>
+        <div class="pc-num">04</div>
+      </div>
+      <div class="pc-body">
+        <div class="pc-title">Retail Sales Analysis — ApexPlanet</div>
+        <p class="pc-desc">End-to-end retail analytics on the Superstore Sales dataset (9,994 records) across 4 structured tasks — data wrangling, EDA & business intelligence, deep-dive analysis with a 3-page interactive Power BI dashboard, and data storytelling with statistical validation.</p>
+        <div class="pc-tags">
+          <span class="pc-tag">Python</span>
+          <span class="pc-tag">Pandas</span>
+          <span class="pc-tag">NumPy</span>
+          <span class="pc-tag">Seaborn</span>
+          <span class="pc-tag">Power BI</span>
+          <span class="pc-tag">MySQL</span>
+          <span class="pc-tag">Statistics</span>
+          <span class="pc-tag">Jupyter</span>
+        </div>
+      </div>
+      <div class="pc-footer" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:0.5rem;">
+        <a href="https://github.com/sathyak29/Retail_Sales_Analysis" target="_blank" class="pc-link">View on GitHub →</a>
+        <a href="https://1drv.ms/u/c/54bcfb4e69e65481/IQB5bVHg4zfrRazoFZjQ0V9gAUt_tMcbdcPbdCjw_Mx2VqQ?e=WYWTlP" target="_blank" style="font-size:0.78rem;color:var(--gold-light);text-decoration:none;display:flex;align-items:center;gap:0.3rem;">🔗 Live Dashboard</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- LEARNING PROJECTS -->
+<section id="learning" style="background:var(--bg);">
+  <div class="reveal">
+    <div class="section-label">Keep Learning</div>
+    <h2>Learning Projects</h2>
+    <div class="divider"></div>
+    <p style="color:var(--muted);font-size:0.95rem;max-width:580px;">Practice projects built to sharpen real-world data analytics skills — from SQL querying to Python pipelines.</p>
+  </div>
+
+  <div class="projects-grid" style="margin-top:2.5rem;">
+
+    <!-- Walmart Learning Project -->
+    <div class="project-card reveal" style="transition-delay:0.1s;">
+      <div class="pc-top">
+        <div class="pc-icon">🛒</div>
+        <div class="pc-num">L1</div>
+      </div>
+      <div class="pc-body">
+        <div class="pc-title">Walmart Sales Analysis</div>
+        <p class="pc-desc">End-to-end data analysis on 10,000 Walmart sales records. Covers Python data cleaning, feature engineering, MySQL loading via SQLAlchemy, and complex SQL queries to extract revenue trends, best-selling categories, peak sales periods, and profit margins by branch.</p>
+        <div class="pc-tags">
+          <span class="pc-tag">Python</span>
+          <span class="pc-tag">MySQL</span>
+          <span class="pc-tag">Pandas</span>
+          <span class="pc-tag">NumPy</span>
+          <span class="pc-tag">SQLAlchemy</span>
+          <span class="pc-tag">Jupyter</span>
+          <span class="pc-tag">Kaggle</span>
+        </div>
+      </div>
+      <div class="pc-footer">
+        <a href="https://github.com/sathyak29/walmart_Learning_project" target="_blank" class="pc-link">View on GitHub →</a>
+        <span style="font-size:0.72rem;color:var(--muted);">10K Records · SQL + Python</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section id="certifications">
+  <div class="reveal">
+    <div class="section-label">Achievements</div>
+    <h2>Certifications &amp; Internships</h2>
+    <div class="divider"></div>
+    <p style="color:var(--muted);font-size:0.95rem;max-width:600px;">9 verified certifications from Microsoft, TATA, AWS, and more — spanning data analytics, cloud, and AI.</p>
+  </div>
+
+  <!-- Internship Certificates -->
+  <div style="margin-top:2.5rem;margin-bottom:1rem;">
+    <div style="font-size:0.72rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:1.2rem;display:flex;align-items:center;gap:0.6rem;">
+      <span>🏢</span> Internship Certificates
+      <span style="flex:1;height:1px;background:var(--border);display:block;"></span>
+    </div>
+  </div>
+  <div class="cert-grid" style="max-width:1100px;margin:0 auto;">
+    <!-- Microsoft Internship Completion -->
+    <div class="cert-card reveal" style="border-color:rgba(196,160,90,0.45);position:relative;overflow:hidden;">
+      <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--gold),var(--gold-light),var(--gold));"></div>
+      <div class="cert-badge">🏢</div>
+      <div class="cert-info">
+        <div class="cert-name">Internship Completion — Power BI</div>
+        <div class="cert-issuer">Microsoft Elevate &amp; AICTE</div>
+        <div class="cert-year">Feb 16 – Mar 12, 2026 · 4 Weeks</div>
+      </div>
+    </div>
+    <!-- GenAI TATA Forage -->
+    <div class="cert-card reveal" style="transition-delay:0.1s;border-color:rgba(196,160,90,0.35);position:relative;overflow:hidden;">
+      <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--gold),var(--gold-light),var(--gold));"></div>
+      <div class="cert-badge">🤖</div>
+      <div class="cert-info">
+        <div class="cert-name">GenAI Powered Data Analytics</div>
+        <div class="cert-issuer">TATA &amp; Forage — Job Simulation</div>
+        <div class="cert-year">March 20, 2026 · EDA · AI · Storytelling</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Course Certificates -->
+  <div style="margin-top:2.5rem;margin-bottom:1rem;">
+    <div style="font-size:0.72rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:1.2rem;display:flex;align-items:center;gap:0.6rem;">
+      <span>📜</span> Course Certificates
+      <span style="flex:1;height:1px;background:var(--border);display:block;"></span>
+    </div>
+  </div>
+  <div class="cert-grid" style="max-width:1100px;margin:0 auto;">
+    <!-- Power BI -->
+    <div class="cert-card reveal">
+      <div class="cert-badge">📊</div>
+      <div class="cert-info">
+        <div class="cert-name">Power BI — Business Applications</div>
+        <div class="cert-issuer">Microsoft Elevate &amp; AICTE</div>
+        <div class="cert-year">20 Hours · Mar 2026</div>
+      </div>
+    </div>
+    <!-- Microsoft Azure -->
+    <div class="cert-card reveal" style="transition-delay:0.1s">
+      <div class="cert-badge">☁️</div>
+      <div class="cert-info">
+        <div class="cert-name">Microsoft Azure</div>
+        <div class="cert-issuer">Microsoft Elevate &amp; AICTE</div>
+        <div class="cert-year">25 Hours · Mar 2026</div>
+      </div>
+    </div>
+    <!-- Cloud Administration -->
+    <div class="cert-card reveal" style="transition-delay:0.15s">
+      <div class="cert-badge">🖥️</div>
+      <div class="cert-info">
+        <div class="cert-name">Cloud Administration &amp; Engineering</div>
+        <div class="cert-issuer">Microsoft Elevate &amp; AICTE</div>
+        <div class="cert-year">40 Hours · Mar 2026</div>
+      </div>
+    </div>
+    <!-- AI & ML -->
+    <div class="cert-card reveal" style="transition-delay:0.2s">
+      <div class="cert-badge">🧠</div>
+      <div class="cert-info">
+        <div class="cert-name">Artificial Intelligence &amp; Machine Learning</div>
+        <div class="cert-issuer">Microsoft Elevate &amp; AICTE</div>
+        <div class="cert-year">20 Hours · Mar 2026</div>
+      </div>
+    </div>
+    <!-- Microsoft Copilot -->
+    <div class="cert-card reveal" style="transition-delay:0.25s">
+      <div class="cert-badge">🤝</div>
+      <div class="cert-info">
+        <div class="cert-name">Microsoft Copilot</div>
+        <div class="cert-issuer">Microsoft Elevate &amp; AICTE</div>
+        <div class="cert-year">35 Hours · Mar 2026</div>
+      </div>
+    </div>
+    <!-- AWS -->
+    <div class="cert-card reveal" style="transition-delay:0.3s">
+      <div class="cert-badge">☁️</div>
+      <div class="cert-info">
+        <div class="cert-name">Amazon Web Services (AWS) Training</div>
+        <div class="cert-issuer">Besant Technologies</div>
+        <div class="cert-year">Cert ID: 136207 · Mar 6, 2026</div>
+      </div>
+    </div>
+    <!-- Tableau -->
+    <div class="cert-card reveal" style="transition-delay:0.35s">
+      <div class="cert-badge">📈</div>
+      <div class="cert-info">
+        <div class="cert-name">Tableau Training</div>
+        <div class="cert-issuer">Besant Technologies</div>
+        <div class="cert-year">Cert ID: 136207 · Jan 30, 2026</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-wrapper reveal">
+    <div class="section-label" style="justify-content:center">Get In Touch</div>
+    <h2>Let's Work<br /><em style="font-style:italic;color:var(--gold)">Together</em></h2>
+    <p class="contact-sub">Open to data analyst roles, freelance projects, and analytics collaborations. Drop me a message!</p>
+
+    <div class="contact-cards">
+      <a href="mailto:sathyakp0507@gmail.com" class="contact-card">
+        <div class="cc-icon">✉️</div>
+        <div>
+          <div class="cc-label">Email</div>
+          <div class="cc-val">sathyakp0507@gmail.com</div>
+        </div>
+      </a>
+      <a href="https://linkedin.com/in/sathyak29" target="_blank" class="contact-card">
+        <div class="cc-icon">💼</div>
+        <div>
+          <div class="cc-label">LinkedIn</div>
+          <div class="cc-val">linkedin.com/in/sathyak29</div>
+        </div>
+      </a>
+      <a href="https://github.com/sathyak29" target="_blank" class="contact-card">
+        <div class="cc-icon">🐙</div>
+        <div>
+          <div class="cc-label">GitHub</div>
+          <div class="cc-val">github.com/sathyak29</div>
+        </div>
+      </a>
+    </div>
+
+    <a href="mailto:sathyakp0507@gmail.com" class="btn btn-gold" style="font-size:0.88rem;padding:0.8rem 2.2rem;">Send Me an Email →</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>Designed & Built by <span>Sathya K</span> · Data Analyst · Chennai, India</p>
+  <p style="margin-top:0.4rem;">© 2026 · <span>sathyakp0507@gmail.com</span></p>
+</footer>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  reveals.forEach(r => observer.observe(r));
+</script>
+</body>
+</html>
